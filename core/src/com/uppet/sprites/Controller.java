@@ -14,13 +14,17 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.uppet.MainGame;
 
 public class Controller {
-    boolean upPressed, downPressed, leftPressed, rightPressed;
+    boolean leftPressed, rightPressed;
     private Viewport viewport;
     private Stage stage;
 
-    public boolean isUpPressed() {
-        return upPressed;
+    public boolean isLeftPressed() {
+        return leftPressed;
     }
+    public boolean isRightPressed() {
+        return rightPressed;
+    }
+
 
     public Controller(SpriteBatch sb){
         viewport = new FitViewport(MainGame.WIDTH,MainGame.HEIGHT,new OrthographicCamera());
@@ -30,25 +34,43 @@ public class Controller {
         Gdx.input.setInputProcessor(stage);
 
         Table table = new Table();
-        table.left().bottom();
+        table.setFillParent(true);
+        table.bottom();
 
-        Image upImg = new Image(new Texture("up.png"));
-        upImg.setSize(50,50);
-        upImg.addListener(new InputListener(){
+        Image rightImg = new Image(new Texture("right.png"));
+        rightImg.setSize(80,80);
+        rightImg.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                upPressed = true;
+                rightPressed = true;
                 return true;
             }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                upPressed = false;
+                rightPressed = false;
             }
         });
 
-        //table.add();
-        table.add(upImg).size(upImg.getWidth(),upImg.getHeight());
-        //table.add();
+        Image leftImg = new Image(new Texture("left.png"));
+        leftImg.setSize(80,80);
+        leftImg.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                leftPressed = true;
+                return true;
+            }
+
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                leftPressed = false;
+            }
+        });
+
+        table.row().pad(10,10,20,10);
+        table.add();
+        table.add(leftImg).size(leftImg.getWidth(),leftImg.getHeight());
+        table.add();
+        table.add(rightImg).size(rightImg.getWidth(),rightImg.getHeight());
+        table.add();
 
         stage.addActor(table);
 

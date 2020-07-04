@@ -1,6 +1,7 @@
 package com.uppet.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.uppet.MainGame;
 
@@ -9,6 +10,7 @@ public class Pet {
     private Vector3 position;
     private Vector3 velocity;
     private Texture texture;
+    private Rectangle bounds;
 
     public Vector3 getPosition() {
         return position;
@@ -18,10 +20,11 @@ public class Pet {
         return texture;
     }
 
-    public Pet(){
-        position = new Vector3(0,0,0);
+    public Pet(int x, int y){
+        position = new Vector3(x,y,0);
         velocity = new Vector3(0,0,0);
         texture = new Texture("pet.png");
+        bounds = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
     }
     public void setPosition(int x, int y)
     {
@@ -46,6 +49,8 @@ public class Pet {
         }
 
         velocity.scl(1/dt);
+
+        bounds.setPosition(position.x,position.y);
     }
 
     private void bouncing()
@@ -75,8 +80,20 @@ public class Pet {
         gravity = 0;
     }
 
-    public void move(int x, int y)
+    public Rectangle getBounds()
     {
+        return bounds;
+    }
 
+    public void flyingLeft(){
+        velocity.y = 150;
+        velocity.x = -100;
+        gravity = 0;
+    }
+
+    public void flyingRight()    {
+        velocity.y = 150;
+        velocity.x = 100;
+        gravity = 0;
     }
 }
