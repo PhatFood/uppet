@@ -1,38 +1,63 @@
 package com.uppet.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.uppet.Animation;
 import com.uppet.MainGame;
 
 public class Pet {
     private float gravity = 0;
     private Vector3 position;
     private Vector3 velocity;
-    private Texture texture;
     private Rectangle bounds;
+    private Texture texturePetAni;
+
+    private Texture bubbleTexture;
+    private Rectangle bubbleBounds;
+    private Vector3 bubblePos;
+
+    private Animation petAnimation;
 
     public Vector3 getPosition() {
         return position;
     }
 
-    public Texture getTexture() {
-        return texture;
+    public TextureRegion getPetTexture() {
+        return petAnimation.getFrame();
     }
+
+    public Vector3 getBubblePos(){return bubblePos; }
+
+    public Texture getBubbleTexture(){return  bubbleTexture; }
 
     public Pet(int x, int y){
         position = new Vector3(x,y,0);
         velocity = new Vector3(0,0,0);
-        texture = new Texture("pet.png");
-        bounds = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
+
+        texturePetAni = new Texture("petani.png");
+        petAnimation = new Animation(new TextureRegion(texturePetAni),5,0.7f);
+
+        bounds = new Rectangle(x,y, texturePetAni.getWidth()/5, texturePetAni.getHeight());
+
+        bubbleTexture = new Texture("bubble.png");
+        bubblePos = new Vector3(x-(bubbleTexture.getWidth()/2-texturePetAni.getWidth()/10),y+55,0);
+        bubbleBounds = new Rectangle(bubblePos.x,bubblePos.y,bubbleTexture.getWidth(),bubbleTexture.getHeight());
     }
     public void setPosition(int x, int y)
     {
         position.x = x;
         position.y = y;
+
+        bounds.setPosition(position.x,position.y);
+        bubblePos.x = position.x - (bubbleTexture.getWidth()/2-texturePetAni.getWidth()/10);
+        bubblePos.y = position.y+55;
+        bubbleBounds.setPosition(bubblePos.x,bubblePos.y);
     }
 
     public void update(float dt){
+        petAnimation.update(dt);
         velocity.add(0,gravity,0);
         gravity -= 0.1;
         velocity.scl(dt);
@@ -43,7 +68,7 @@ public class Pet {
             position.y = 0;
         }
 
-        if (position.x < (0) || position.x > (MainGame.WIDTH-texture.getWidth()))
+        if (position.x < (0) || position.x > (MainGame.WIDTH- texturePetAni.getWidth()/5))
         {
             bouncing();
         }
@@ -51,6 +76,9 @@ public class Pet {
         velocity.scl(1/dt);
 
         bounds.setPosition(position.x,position.y);
+        bubblePos.x = position.x - (bubbleTexture.getWidth()/2-texturePetAni.getWidth()/10);
+        bubblePos.y = position.y+55;
+        bubbleBounds.setPosition(bubblePos.x,bubblePos.y);
     }
 
     private void bouncing()
@@ -60,24 +88,11 @@ public class Pet {
         {
             velocity.x = 2;
         }
-        else if (position.x > (MainGame.WIDTH-texture.getWidth()))
+        else if (position.x > (MainGame.WIDTH- texturePetAni.getWidth()/5))
         {
             velocity.x = -2;
         }
         gravity = -2;
-    }
-
-    public void jump(int x, int y){
-        velocity.y = 150;
-        if (x>position.x+texture.getWidth()/2)
-        {
-            velocity.x = -100;
-        }
-        else
-        {
-            velocity.x = 100;
-        }
-        gravity = 0;
     }
 
     public Rectangle getBounds()

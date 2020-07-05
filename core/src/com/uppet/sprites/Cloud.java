@@ -7,8 +7,10 @@ import com.badlogic.gdx.math.Vector3;
 import java.util.Random;
 
 public class Cloud {
+    public static final int CLOUD_HEIGHT = 300;
+
     private static final int FLUCTUATION = 100;
-    private static final int CLOUD_GAP = 100;
+    private static final int CLOUD_GAP = 200;
     private static final int LOWEST_RIGHT = 50;
     private Texture leftCloud, rightCloud;
     private Vector2 posLeft, posRight;
@@ -38,5 +40,10 @@ public class Cloud {
 
     public Vector2 getPosRight() {
         return posRight;
+    }
+
+    public void reposition(float y){
+     posRight.set(rand.nextInt(FLUCTUATION) + CLOUD_GAP + LOWEST_RIGHT,y);
+     posLeft.set(posRight.x - CLOUD_GAP - leftCloud.getWidth(), y);
     }
 }

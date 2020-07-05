@@ -8,7 +8,7 @@ import com.uppet.MainGame;
 
 public class Ground {
     public static final int GROUND_HEIGHT = 200;
-    private static final int GRASS_HEIGHT = 23;
+    private static final int GRASS_HEIGHT = 28;
     private float gravity = 0;
     private Vector2 position;
     private Texture texture;
@@ -26,7 +26,7 @@ public class Ground {
 
     public void update()
     {
-        position.set(MainGame.WIDTH/2-(texture.getWidth()/2), position.y-1);
+        position.set(MainGame.WIDTH/2-(texture.getWidth()/2), position.y);
         rectangle.setPosition(position.x,position.y);
     }
 
