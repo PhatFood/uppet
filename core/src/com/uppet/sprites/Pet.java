@@ -1,6 +1,7 @@
 package com.uppet.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -8,16 +9,13 @@ import com.uppet.Animation;
 import com.uppet.MainGame;
 
 public class Pet {
-    private int BUBBLE_MAX_STATE = 3;
     private float gravity = 0;
     private Vector3 position;
     private Vector3 velocity;
     private Rectangle bounds;
     private Texture texturePetAni;
 
-    private Texture bubbleTexture;
-    private Rectangle bubbleBounds;
-    private Vector3 bubblePos;
+    private Balloon balloon;
 
     private Animation petAnimation;
 
@@ -29,10 +27,6 @@ public class Pet {
         return petAnimation.getFrame();
     }
 
-    public Vector3 getBubblePos(){return bubblePos; }
-
-    public Texture getBubbleTexture(){return  bubbleTexture; }
-
     public Pet(int x, int y){
         position = new Vector3(x,y,0);
         velocity = new Vector3(0,0,0);
@@ -42,22 +36,26 @@ public class Pet {
 
         bounds = new Rectangle(x,y, petAnimation.getWidthFrame(), petAnimation.getHeightFrame());
 
-        bubbleTexture = new Texture("bubble.png");
-        bubblePos = new Vector3(x-(bubbleTexture.getWidth()/2-petAnimation.getWidthFrame()/2),y+55,0);
-        bubbleBounds = new Rectangle(bubblePos.x,bubblePos.y,bubbleTexture.getWidth(),bubbleTexture.getHeight());
+        balloon = new Balloon(x,y,petAnimation.getWidthFrame());
     }
+
     public void setPosition(float x, float y)
     {
         position.x = x;
         position.y = y;
 
         bounds.setPosition(position.x,position.y);
-        bubblePos.x = position.x - (bubbleTexture.getWidth()/2-petAnimation.getWidthFrame()/2);
-        bubblePos.y = position.y+55;
-        bubbleBounds.setPosition(bubblePos.x,bubblePos.y);
+
+        balloon.setPosition(x,y,petAnimation.getWidthFrame());
 
         velocity.y = 0;
         gravity = 0;
+    }
+
+    public void render(SpriteBatch sb)
+    {
+        sb.draw(balloon.getTexture(),balloon.getPos().x,balloon.getPos().y);
+        sb.draw(getPetTexture(),position.x,position.y);
     }
 
     public void update(float dt){
@@ -93,9 +91,8 @@ public class Pet {
         velocity.scl(1/dt);
 
         bounds.setPosition(position.x,position.y);
-        bubblePos.x = position.x - (bubbleTexture.getWidth()/2-petAnimation.getWidthFrame()/2);
-        bubblePos.y = position.y+55;
-        bubbleBounds.setPosition(bubblePos.x,bubblePos.y);
+
+        balloon.update(dt,position.x,position.y,petAnimation.getWidthFrame());
     }
 
     private void bouncing()

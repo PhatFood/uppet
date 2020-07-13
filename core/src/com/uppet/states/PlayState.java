@@ -76,8 +76,7 @@ public class PlayState extends State  {
         if(ground.getCurrentHeight()>=0)
             sb.draw(ground.getTexture(),ground.getPosition().x,ground.getPosition().y);
 
-        sb.draw(pet.getBubbleTexture(),pet.getBubblePos().x,pet.getBubblePos().y);
-        sb.draw(pet.getPetTexture(),pet.getPosition().x,pet.getPosition().y);
+        pet.render(sb);
 
         cloudManager.render(sb);
 

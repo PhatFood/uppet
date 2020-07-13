@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c46c50b-3d6b-4222-b207-00c42e037085" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/android/assets/bird.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/assets/birdrev.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/assets/ground1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/assets/petani1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/assets/temp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/bird.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/bubble.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/ground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/pet1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/petani.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/petani1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/temp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/com/uppet/sprites/CloudManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/com/uppet/sprites/Enemy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/com/uppet/sprites/EnemyManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktop/build/resources/main/bird.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktop/build/resources/main/petani1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktop/build/resources/main/temp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/com/uppet/sprites/Balloon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -31,38 +14,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/android.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/assets/bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/assets/bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/assets/bubble.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/assets/bubble.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/assets/cloud.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/assets/cloud.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/assets/ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/assets/ground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/assets/petani.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/assets/petani.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/q1LZBKehMsS1mOdm3MaNmuVBgyY=" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/q1LZBKehMsS1mOdm3MaNmuVBgyY=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeNativeLibs/zip-cache/q1LZBKehMsS1mOdm3MaNmuVBgyY=" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeNativeLibs/zip-cache/q1LZBKehMsS1mOdm3MaNmuVBgyY=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/cloud.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/cloud.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/down.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/left.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/left.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/pet.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/pet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/right.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/right.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/merged_assets/debug/out/up.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/outputs/apk/debug/android-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/outputs/apk/debug/android-debug.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/.transforms/7001462a80c5d4fe1c7ab4cc4d49fa4e/core-1.0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/.transforms/7001462a80c5d4fe1c7ab4cc4d49fa4e/core-1.0/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/uppet/Animation.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/uppet/Animation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/uppet/sprites/Cloud.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/uppet/sprites/Cloud.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/uppet/sprites/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/uppet/sprites/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/uppet/sprites/Ground.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/uppet/sprites/Ground.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/uppet/sprites/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/uppet/sprites/Pet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/uppet/states/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/uppet/states/PlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/bubble.png" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/bubble.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/cloud.png" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/cloud.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/ground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/petani.png" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/petani.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/desktop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/desktop.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,8 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/uppet/states/PlayState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
+            <state relative-caret-position="511">
+              <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,17 +83,33 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/uppet/sprites/Pet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="-1190">
+              <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#680#681#0" expanded="true" />
                 <element signature="e#726#727#0" expanded="true" />
                 <element signature="e#3212#3213#0" expanded="true" />
                 <element signature="e#3241#3242#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/com/uppet/sprites/Balloon.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" column="68" lean-forward="true" selection-start-line="28" selection-start-column="68" selection-end-line="28" selection-end-column="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1148#1149#0" expanded="true" />
+                <element signature="e#1184#1185#0" expanded="true" />
+                <element signature="e#1216#1217#0" expanded="true" />
+                <element signature="e#1248#1249#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -241,10 +210,12 @@
         <option value="$PROJECT_DIR$/core/src/com/uppet/sprites/EnemyManager.java" />
         <option value="$PROJECT_DIR$/core/src/com/uppet/sprites/CloudManager.java" />
         <option value="$PROJECT_DIR$/core/src/com/uppet/sprites/Ground.java" />
-        <option value="$PROJECT_DIR$/core/src/com/uppet/states/PlayState.java" />
         <option value="$PROJECT_DIR$/core/src/com/uppet/sprites/Cloud.java" />
         <option value="$PROJECT_DIR$/core/src/com/uppet/sprites/Enemy.java" />
         <option value="$PROJECT_DIR$/core/src/com/uppet/Animation.java" />
+        <option value="$PROJECT_DIR$/core/src/com/uppet/sprites/Bubble.java" />
+        <option value="$PROJECT_DIR$/core/src/com/uppet/sprites/Balloon.java" />
+        <option value="$PROJECT_DIR$/core/src/com/uppet/states/PlayState.java" />
         <option value="$PROJECT_DIR$/core/src/com/uppet/sprites/Pet.java" />
       </list>
     </option>
@@ -261,66 +232,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ProjectGame" type="1abcf292:AndroidViewProjectNode" />
-              <item name="core" type="e9137016:NonAndroidModuleNode" />
-            </path>
-            <path>
-              <item name="ProjectGame" type="1abcf292:AndroidViewProjectNode" />
-              <item name="core" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="ProjectGame" type="1abcf292:AndroidViewProjectNode" />
-              <item name="core" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="uppet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ProjectGame" type="1abcf292:AndroidViewProjectNode" />
-              <item name="core" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="uppet" type="462c0819:PsiDirectoryNode" />
-              <item name="sprites" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ProjectGame" type="1abcf292:AndroidViewProjectNode" />
-              <item name="core" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="uppet" type="462c0819:PsiDirectoryNode" />
-              <item name="states" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ProjectGame" type="1abcf292:AndroidViewProjectNode" />
-              <item name="desktop" type="e9137016:NonAndroidModuleNode" />
-            </path>
-            <path>
-              <item name="ProjectGame" type="1abcf292:AndroidViewProjectNode" />
-              <item name="desktop" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="ProjectGame" type="1abcf292:AndroidViewProjectNode" />
-              <item name="desktop" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="desktop" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ProjectGame" type="1abcf292:AndroidViewProjectNode" />
-              <item name="desktop" type="e9137016:NonAndroidModuleNode" />
-              <item name="resources" type="f7eae187:NonAndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="ProjectGame" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane" />
     </panes>
@@ -451,7 +363,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.23081024" />
+      <window_info content_ui="combo" id="Project" order="1" weight="0.23081024" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -475,6 +387,32 @@
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.23081024" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Build Variants" order="4" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Designer" order="6" />
+      <window_info id="Resources Explorer" order="7" />
+      <window_info id="Capture Tool" order="8" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.4978678" visible="true" weight="0.24008575" />
+      <window_info anchor="bottom" id="Logcat" order="1" />
+      <window_info anchor="bottom" id="TODO" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3290461" />
+      <window_info anchor="bottom" id="Terminal" order="4" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5021322" side_tool="true" weight="0.3290461" />
+      <window_info anchor="bottom" id="Version Control" order="6" weight="0.3290461" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49840087" weight="0.25187567" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="9" weight="0.3290461" />
+      <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Gradle" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+    </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/core/src/com/uppet/States/Menu.java" />
@@ -712,12 +650,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/uppet/states/PlayState.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/uppet/Animation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
+        <state relative-caret-position="255">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1193#1194#0" expanded="true" />
+            <element signature="e#1214#1215#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -732,28 +672,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/uppet/Animation.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/uppet/states/PlayState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        <state relative-caret-position="511">
+          <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
-            <element signature="e#1214#1215#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/uppet/sprites/Pet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="-1190">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#680#681#0" expanded="true" />
             <element signature="e#726#727#0" expanded="true" />
             <element signature="e#3212#3213#0" expanded="true" />
             <element signature="e#3241#3242#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/uppet/sprites/Balloon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="68" lean-forward="true" selection-start-line="28" selection-start-column="68" selection-end-line="28" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1148#1149#0" expanded="true" />
+            <element signature="e#1184#1185#0" expanded="true" />
+            <element signature="e#1216#1217#0" expanded="true" />
+            <element signature="e#1248#1249#0" expanded="true" />
           </folding>
         </state>
       </provider>
