@@ -7,9 +7,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.uppet.MainGame;
 
 public class Ground {
-    public static final int GROUND_HEIGHT = 200;
-    private static final int GRASS_HEIGHT = 28;
-    private float gravity = 0;
+    public static final int GROUND_HEIGHT = 450;
+    private static final int GRASS_HEIGHT = 370;
     private Vector2 position;
     private Texture texture;
     private Rectangle rectangle;
@@ -18,7 +17,7 @@ public class Ground {
     public Texture getTexture() {return texture;}
 
     public Ground() {
-        texture = new Texture("ground.png");
+        texture = new Texture("ground1.png");
         position = new Vector2(MainGame.WIDTH/2-(texture.getWidth()/2), -(texture.getHeight()-GROUND_HEIGHT));
 
         rectangle = new Rectangle(position.x,position.y,texture.getWidth(),texture.getHeight()-GRASS_HEIGHT);

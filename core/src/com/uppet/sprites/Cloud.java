@@ -9,8 +9,8 @@ import java.util.Random;
 public class Cloud {
     public static final int CLOUD_HEIGHT = 300;
 
-    private static final int FLUCTUATION = 100;
-    private static final int CLOUD_GAP = 200;
+    private static final int FLUCTUATION = 150;
+    private static final int CLOUD_GAP = 150;
     private static final int LOWEST_RIGHT = 50;
     private Texture leftCloud, rightCloud;
     private Vector2 posLeft, posRight;
@@ -22,8 +22,8 @@ public class Cloud {
         rightCloud = new Texture("cloud.png");
         rand = new Random();
 
-        posRight = new Vector2(rand.nextInt(FLUCTUATION) + CLOUD_GAP + LOWEST_RIGHT,y);
-        posLeft = new Vector2(posRight.x - CLOUD_GAP - leftCloud.getWidth(), y);
+        posRight = new Vector2(rand.nextInt(FLUCTUATION) + CLOUD_GAP + LOWEST_RIGHT + rand.nextInt(25),y+400);
+        posLeft = new Vector2(posRight.x - CLOUD_GAP - leftCloud.getWidth() - rand.nextInt(25) , y+400);
     }
 
     public Texture getLeftCloud() {

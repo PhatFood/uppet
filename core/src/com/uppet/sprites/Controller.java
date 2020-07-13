@@ -38,7 +38,7 @@ public class Controller {
         table.bottom();
 
         Image rightImg = new Image(new Texture("right.png"));
-        rightImg.setSize(80,80);
+        rightImg.setSize(100,100);
         rightImg.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
@@ -52,7 +52,7 @@ public class Controller {
         });
 
         Image leftImg = new Image(new Texture("left.png"));
-        leftImg.setSize(80,80);
+        leftImg.setSize(100,100);
         leftImg.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){

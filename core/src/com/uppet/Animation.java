@@ -9,7 +9,7 @@ public class Animation {
     private Array<TextureRegion> frames;
     private float maxFrameTime;
     private float currentFrameTime;
-    private int frameCount;
+    private int frameCount = 0;
     private int frame;
 
     public Animation(TextureRegion region, int frameCount, float cycleTime)
@@ -38,5 +38,24 @@ public class Animation {
 
     public TextureRegion getFrame(){
         return frames.get(frame);
+    }
+
+    public TextureRegion getFrameAt(int pos)
+    {
+        return frames.get(pos);
+    }
+
+    public float getWidthFrame()
+    {
+        if (frameCount==0)
+            return 0;
+        return frames.get(0).getRegionWidth();
+    }
+
+    public float getHeightFrame()
+    {
+        if (frameCount==0)
+        return 0;
+        return frames.get(0).getRegionHeight();
     }
 }

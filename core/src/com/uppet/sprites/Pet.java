@@ -8,6 +8,7 @@ import com.uppet.Animation;
 import com.uppet.MainGame;
 
 public class Pet {
+    private int BUBBLE_MAX_STATE = 3;
     private float gravity = 0;
     private Vector3 position;
     private Vector3 velocity;
@@ -36,24 +37,27 @@ public class Pet {
         position = new Vector3(x,y,0);
         velocity = new Vector3(0,0,0);
 
-        texturePetAni = new Texture("petani.png");
+        texturePetAni = new Texture("petani1.png");
         petAnimation = new Animation(new TextureRegion(texturePetAni),5,0.7f);
 
-        bounds = new Rectangle(x,y, texturePetAni.getWidth()/5, texturePetAni.getHeight());
+        bounds = new Rectangle(x,y, petAnimation.getWidthFrame(), petAnimation.getHeightFrame());
 
         bubbleTexture = new Texture("bubble.png");
-        bubblePos = new Vector3(x-(bubbleTexture.getWidth()/2-texturePetAni.getWidth()/10),y+55,0);
+        bubblePos = new Vector3(x-(bubbleTexture.getWidth()/2-petAnimation.getWidthFrame()/2),y+55,0);
         bubbleBounds = new Rectangle(bubblePos.x,bubblePos.y,bubbleTexture.getWidth(),bubbleTexture.getHeight());
     }
-    public void setPosition(int x, int y)
+    public void setPosition(float x, float y)
     {
         position.x = x;
         position.y = y;
 
         bounds.setPosition(position.x,position.y);
-        bubblePos.x = position.x - (bubbleTexture.getWidth()/2-texturePetAni.getWidth()/10);
+        bubblePos.x = position.x - (bubbleTexture.getWidth()/2-petAnimation.getWidthFrame()/2);
         bubblePos.y = position.y+55;
         bubbleBounds.setPosition(bubblePos.x,bubblePos.y);
+
+        velocity.y = 0;
+        gravity = 0;
     }
 
     public void update(float dt){
@@ -62,13 +66,26 @@ public class Pet {
         gravity -= 0.1;
         velocity.scl(dt);
         position.add(velocity.x,velocity.y,velocity.z);
-
-        if (position.y < 0)
+        if(position.x < 0)
         {
-            position.y = 0;
+            position.x = 0;
+        }
+        if(position.x > MainGame.WIDTH- petAnimation.getWidthFrame())
+        {
+            position.x = MainGame.WIDTH- petAnimation.getWidthFrame();
         }
 
-        if (position.x < (0) || position.x > (MainGame.WIDTH- texturePetAni.getWidth()/5))
+
+        if(velocity.x < 0)
+        {
+            velocity.add(0.01f,0,0);
+        }
+        else if(velocity.x > 0)
+        {
+            velocity.add(-0.01f,0,0);
+        }
+
+        if (position.x == (0) || position.x == (MainGame.WIDTH- petAnimation.getWidthFrame()))
         {
             bouncing();
         }
@@ -76,21 +93,20 @@ public class Pet {
         velocity.scl(1/dt);
 
         bounds.setPosition(position.x,position.y);
-        bubblePos.x = position.x - (bubbleTexture.getWidth()/2-texturePetAni.getWidth()/10);
+        bubblePos.x = position.x - (bubbleTexture.getWidth()/2-petAnimation.getWidthFrame()/2);
         bubblePos.y = position.y+55;
         bubbleBounds.setPosition(bubblePos.x,bubblePos.y);
     }
 
     private void bouncing()
     {
-        velocity.y = 1;
-        if (position.x < (0))
+        if (position.x == (0))
         {
-            velocity.x = 2;
+            velocity.x = 2.5f;
         }
-        else if (position.x > (MainGame.WIDTH- texturePetAni.getWidth()/5))
+        else if (position.x == (MainGame.WIDTH- petAnimation.getWidthFrame()))
         {
-            velocity.x = -2;
+            velocity.x = -2.5f;
         }
         gravity = -2;
     }
@@ -101,14 +117,14 @@ public class Pet {
     }
 
     public void flyingLeft(){
-        velocity.y = 150;
-        velocity.x = -100;
+        velocity.y = 200;
+        velocity.x = -150;
         gravity = 0;
     }
 
     public void flyingRight()    {
-        velocity.y = 150;
-        velocity.x = 100;
+        velocity.y = 200;
+        velocity.x = 150;
         gravity = 0;
     }
 }
