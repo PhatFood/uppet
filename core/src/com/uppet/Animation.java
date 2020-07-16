@@ -3,14 +3,14 @@ package com.uppet;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
-import java.awt.image.AreaAveragingScaleFilter;
-
 public class Animation {
     private Array<TextureRegion> frames;
     private float maxFrameTime;
     private float currentFrameTime;
     private int frameCount = 0;
     private int frame;
+    private boolean isStopped = false;
+    private boolean isLoop = true;
 
     public Animation(TextureRegion region, int frameCount, float cycleTime)
     {
@@ -25,19 +25,39 @@ public class Animation {
     }
 
     public void update(float dt){
-        currentFrameTime += dt;
-        if (currentFrameTime > maxFrameTime){
-            frame++;
-            currentFrameTime = 0;
+        if(!isStopped) {
+            currentFrameTime += dt;
+            if (currentFrameTime > maxFrameTime) {
+                frame++;
+                currentFrameTime = 0;
+            }
+            if (frame >= frameCount) {
+                if(isLoop)
+                frame = 0;
+                else
+                {
+                    isStopped = true;
+                    frame--;
+                }
+            }
         }
-        if(frame >= frameCount)
-        {
-            frame = 0;
-        }
+    }
+
+    public void stopAni()
+    {
+        isStopped = true;
+    }
+    public void continueAni()
+    {
+        isStopped = false;
     }
 
     public TextureRegion getFrame(){
         return frames.get(frame);
+    }
+
+    public void setLoop(boolean b){
+        isLoop = b;
     }
 
     public TextureRegion getFrameAt(int pos)

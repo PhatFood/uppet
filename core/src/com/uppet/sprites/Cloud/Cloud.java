@@ -1,4 +1,4 @@
-package com.uppet.sprites;
+package com.uppet.sprites.Cloud;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;

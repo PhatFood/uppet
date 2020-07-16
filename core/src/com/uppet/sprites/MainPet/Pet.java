@@ -1,4 +1,4 @@
-package com.uppet.sprites;
+package com.uppet.sprites.MainPet;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,10 +14,11 @@ public class Pet {
     private Vector3 velocity;
     private Rectangle bounds;
     private Texture texturePetAni;
-
     private Balloon balloon;
-
     private Animation petAnimation;
+    private boolean isOver;
+
+
 
     public Vector3 getPosition() {
         return position;
@@ -31,7 +32,9 @@ public class Pet {
         position = new Vector3(x,y,0);
         velocity = new Vector3(0,0,0);
 
-        texturePetAni = new Texture("petani1.png");
+        isOver = false;
+
+        texturePetAni = new Texture("petanishiba.png");
         petAnimation = new Animation(new TextureRegion(texturePetAni),5,0.7f);
 
         bounds = new Rectangle(x,y, petAnimation.getWidthFrame(), petAnimation.getHeightFrame());
@@ -54,8 +57,15 @@ public class Pet {
 
     public void render(SpriteBatch sb)
     {
-        sb.draw(balloon.getTexture(),balloon.getPos().x,balloon.getPos().y);
+        if(balloon.getTexture()!=null)
+            sb.draw(balloon.getTexture(),balloon.getPos().x,balloon.getPos().y);
         sb.draw(getPetTexture(),position.x,position.y);
+    }
+
+    public void over()
+    {
+        isOver = true;
+        balloon.over();
     }
 
     public void update(float dt){
@@ -91,8 +101,9 @@ public class Pet {
         velocity.scl(1/dt);
 
         bounds.setPosition(position.x,position.y);
-
         balloon.update(dt,position.x,position.y,petAnimation.getWidthFrame());
+        if(balloon.isOver())
+            isOver = true;
     }
 
     private void bouncing()
@@ -113,15 +124,24 @@ public class Pet {
         return bounds;
     }
 
+    public Rectangle getBalloonBounds(){return balloon.getBounds();}
+
     public void flyingLeft(){
+        if(!isOver)
+        {
+        balloon.changeState();
         velocity.y = 200;
         velocity.x = -150;
         gravity = 0;
+        }
     }
 
-    public void flyingRight()    {
-        velocity.y = 200;
-        velocity.x = 150;
-        gravity = 0;
+    public void flyingRight(){
+        if(!isOver) {
+            balloon.changeState();
+            velocity.y = 200;
+            velocity.x = 150;
+            gravity = 0;
+        }
     }
 }

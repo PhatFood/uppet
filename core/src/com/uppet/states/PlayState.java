@@ -2,15 +2,12 @@ package com.uppet.states;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Array;
 import com.uppet.MainGame;
-import com.uppet.sprites.Cloud;
-import com.uppet.sprites.CloudManager;
+import com.uppet.sprites.Cloud.CloudManager;
 import com.uppet.sprites.Controller;
-import com.uppet.sprites.Enemy;
-import com.uppet.sprites.EnemyManager;
+import com.uppet.sprites.Enemy.EnemyManager;
 import com.uppet.sprites.Ground;
-import com.uppet.sprites.Pet;
+import com.uppet.sprites.MainPet.Pet;
 
 public class PlayState extends State  {
     private Pet pet;
@@ -39,12 +36,17 @@ public class PlayState extends State  {
     protected void handleInput() {
         if (controller.isRightPressed())
         {
-            pet.flyingRight();
+                pet.flyingRight();
         }
         else if(controller.isLeftPressed())
         {
-            pet.flyingLeft();
+                pet.flyingLeft();
         }
+
+        /*if(controller.isRightReleased())
+            pet.flyingRight();
+        if(controller.isLeftReleased())
+            pet.flyingLeft();*/
     }
 
     @Override
@@ -62,10 +64,10 @@ public class PlayState extends State  {
 
         cloudManager.update(cam);
 
-        enemyManager.update(cam,dt);
+        enemyManager.update(cam,dt,pet);
 
-        cam.position.y += 1.7;
-        cam.update();
+        /*cam.position.y += 1.5;
+        cam.update();*/
     }
 
     @Override

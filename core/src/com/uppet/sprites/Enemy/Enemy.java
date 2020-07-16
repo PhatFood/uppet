@@ -1,4 +1,4 @@
-package com.uppet.sprites;
+package com.uppet.sprites.Enemy;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -22,7 +22,7 @@ public class Enemy {
     private static Animation birdAnimationFlyLeft;
     private enum FlyWay{flyRight, flyLeft;}
     private FlyWay flyWay;
-    private float birdSpeed = 3;
+    private float birdSpeed = 5;
     private Random rand;
 
     public Vector3 getPosition(){return position;};
@@ -73,6 +73,7 @@ public class Enemy {
 
         if(position.x <= 0)
         {
+            position.x = 0;
             birdSpeed = 3;
             velocity.x = birdSpeed;
             flyWay = FlyWay.flyRight;
@@ -80,13 +81,17 @@ public class Enemy {
 
         if(position.x >= (MainGame.WIDTH - birdAnimation.getWidthFrame()))
         {
+            position.x = (MainGame.WIDTH - birdAnimation.getWidthFrame());
             birdSpeed = -3;
             velocity.x = birdSpeed;
             flyWay = FlyWay.flyLeft;
         }
+        rectangle.setPosition(position.x,position.y);
 
         velocity.scl(1/dt);
+    }
 
-        rectangle.setPosition(position.x,position.y);
+    public boolean collides(Rectangle player){
+        return player.overlaps(rectangle);
     }
 }

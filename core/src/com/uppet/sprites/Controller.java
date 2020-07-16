@@ -14,15 +14,41 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.uppet.MainGame;
 
 public class Controller {
-    boolean leftPressed, rightPressed;
+    private boolean leftPressed, rightPressed, leftReleased, rightReleased;
     private Viewport viewport;
     private Stage stage;
 
     public boolean isLeftPressed() {
-        return leftPressed;
+        if(leftPressed)
+        {
+            leftPressed = false;
+            return true;
+        }
+        return false;
+    }
+    public boolean isLeftReleased() {
+        if(leftReleased)
+        {
+            leftReleased = false;
+            return true;
+        }
+        return false;
     }
     public boolean isRightPressed() {
-        return rightPressed;
+        if(rightPressed)
+        {
+            rightPressed = false;
+            return true;
+        }
+        return false;
+    }
+    public boolean isRightReleased() {
+        if(rightReleased)
+        {
+            rightReleased = false;
+            return true;
+        }
+        return false;
     }
 
 
@@ -39,6 +65,7 @@ public class Controller {
 
         Image rightImg = new Image(new Texture("right.png"));
         rightImg.setSize(100,100);
+        rightPressed = false; rightReleased = false; leftPressed = false; leftReleased = false;
         rightImg.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
@@ -48,6 +75,7 @@ public class Controller {
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 rightPressed = false;
+                rightReleased = true;
             }
         });
 
@@ -62,6 +90,7 @@ public class Controller {
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 leftPressed = false;
+                leftReleased = true;
             }
         });
 
