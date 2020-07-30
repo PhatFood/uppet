@@ -5,15 +5,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.uppet.sprites.Cloud.Cloud;
 
+import java.util.ArrayList;
+
 public class CloudManager {
     private static final int CLOUD_SPACING = 300;
     private static int CLOUD_COUNT = 3;
 
-    private Array<Cloud> clouds;
+    private ArrayList<Cloud> clouds;
 
     public CloudManager()
     {
-        clouds = new Array<Cloud>();
+        clouds = new ArrayList<Cloud>();
         for(int i = 1; i <= CLOUD_COUNT; i++)
         {
             clouds.add(new Cloud(i*(CLOUD_SPACING+Cloud.CLOUD_HEIGHT)));

@@ -5,6 +5,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.uppet.MainGame;
+import com.uppet.StandingListener;
+
+import java.util.ArrayList;
 
 public class Ground {
     public static final int GROUND_HEIGHT = 450;
@@ -12,6 +15,7 @@ public class Ground {
     private Vector2 position;
     private Texture texture;
     private Rectangle rectangle;
+    private static ArrayList<StandingListener> standingListeners = new ArrayList<>();
 
     public Vector2 getPosition() {return position;}
     public Texture getTexture() {return texture;}
@@ -23,10 +27,18 @@ public class Ground {
         rectangle = new Rectangle(position.x,position.y,texture.getWidth(),texture.getHeight()-GRASS_HEIGHT);
     }
 
-    public void update()
+    public void update(Rectangle bounds)
     {
         position.set(MainGame.WIDTH/2-(texture.getWidth()/2), position.y);
         rectangle.setPosition(position.x,position.y);
+
+        if (bounds.overlaps(rectangle))
+        {
+            for(StandingListener standingListener : standingListeners)
+            {
+                standingListener.onStand(getCurrentHeight());
+            }
+        }
     }
 
     public float getCurrentHeight(){
@@ -35,6 +47,13 @@ public class Ground {
 
     public boolean collides(Rectangle player){
         return player.overlaps(rectangle);
+    }
+
+
+
+    public static void addStandingListener(StandingListener standingListener)
+    {
+        standingListeners.add(standingListener);
     }
 
     /*public boolean isVisible() {

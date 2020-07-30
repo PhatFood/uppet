@@ -3,11 +3,16 @@ package com.uppet.states;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.uppet.MainGame;
+import com.uppet.StandingListener;
+import com.uppet.TapListener;
 import com.uppet.sprites.Cloud.CloudManager;
 import com.uppet.sprites.Controller;
 import com.uppet.sprites.Enemy.EnemyManager;
 import com.uppet.sprites.Ground;
 import com.uppet.sprites.MainPet.Pet;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class PlayState extends State  {
     private Pet pet;
@@ -17,6 +22,9 @@ public class PlayState extends State  {
 
     private EnemyManager enemyManager;
     private CloudManager cloudManager;
+
+    private static ArrayList<TapListener> tapListeners = new ArrayList<>();
+    private static ArrayList<StandingListener> standingListeners = new ArrayList<>();
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -36,11 +44,19 @@ public class PlayState extends State  {
     protected void handleInput() {
         if (controller.isRightPressed())
         {
-                pet.flyingRight();
+            for(TapListener tapListener : tapListeners)
+            {
+                tapListener.onTapRight();
+            }
+                //pet.flyingRight();
         }
         else if(controller.isLeftPressed())
         {
-                pet.flyingLeft();
+            for(TapListener tapListener : tapListeners)
+            {
+                tapListener.onTapLeft();
+            }
+                //pet.flyingLeft();
         }
 
         /*if(controller.isRightReleased())
@@ -55,19 +71,15 @@ public class PlayState extends State  {
         pet.update(dt);
 
         if(ground.getCurrentHeight() >= 0) {
-            ground.update();
-            if(ground.collides(pet.getBounds()))
-            {
-                pet.setPosition(pet.getPosition().x,ground.getCurrentHeight());
-            }
+            ground.update(pet.getBounds());
         }
 
         cloudManager.update(cam);
 
-        enemyManager.update(cam,dt,pet);
+        enemyManager.update(cam,dt,pet.getBalloonBounds());
 
-        /*cam.position.y += 1.5;
-        cam.update();*/
+        cam.position.y += 1.5;
+        cam.update();
     }
 
     @Override
@@ -92,5 +104,9 @@ public class PlayState extends State  {
     @Override
     public void dispose() {
 
+    }
+
+    public static void addTapListener(TapListener tapListener){
+        tapListeners.add(tapListener);
     }
 }

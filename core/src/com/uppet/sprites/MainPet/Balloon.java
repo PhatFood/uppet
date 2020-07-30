@@ -5,16 +5,23 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.uppet.Animation;
+import com.uppet.PlayerOverListener;
+import com.uppet.TapListener;
+import com.uppet.states.PlayState;
 
-public class Balloon {
+import java.util.ArrayList;
+
+public class Balloon implements TapListener {
     private Texture balloonTexture, balloonTexturePop;
     private Rectangle balloonBounds;
     private Vector3 balloonPos;
+
     private enum BalloonStates{green, yellow, red, pop};
     private BalloonStates balloonState;
     private float reviveTime;
     private float balloonCurrentTime;
     private Animation balloonAnimation, balloonAnimationPop;
+    private static ArrayList<PlayerOverListener> playerOverListeners = new ArrayList<>();
 
 
 
@@ -45,6 +52,8 @@ public class Balloon {
         balloonPos = new Vector3(x-(balloonAnimation.getWidthFrame()/2-petWidth/2),y+55,0);
         balloonBounds = new Rectangle(balloonPos.x, balloonPos.y, balloonAnimation.getWidthFrame(), balloonAnimation.getHeightFrame());
         balloonState = BalloonStates.green;
+
+        PlayState.addTapListener(this);
     }
 
     public void setPosition(float x, float y, float petWidth)
@@ -57,6 +66,20 @@ public class Balloon {
         }
         else {
             balloonPos.x = x - (balloonAnimation.getWidthFrame() / 2 - petWidth / 2);
+            balloonPos.y = y + 55;
+        }
+
+        balloonBounds.setPosition(balloonPos.x,balloonPos.y);
+    }
+
+    public void setPosition( float y, float petWidth)
+    {
+
+        if(balloonState == BalloonStates.pop)
+        {
+            balloonPos.y = y+45;
+        }
+        else {
             balloonPos.y = y + 55;
         }
 
@@ -77,6 +100,11 @@ public class Balloon {
             balloonAnimationPop.update(dt);
             balloonPos.x = x - (balloonAnimationPop.getWidthFrame()/2-petWidth/2) - 5;
             balloonPos.y = y+45;
+
+            for(PlayerOverListener playerOverListener : playerOverListeners)
+            {
+                playerOverListener.onOver();
+            }
         }
         else {
             balloonPos.x = x - (balloonAnimation.getWidthFrame() / 2 - petWidth / 2);
@@ -117,7 +145,22 @@ public class Balloon {
         return null;
     }
 
+    public static void addOverListener(PlayerOverListener playerOverListener)
+    {
+        playerOverListeners.add(playerOverListener);
+    }
+
     public Vector3 getPos() {
         return balloonPos;
+    }
+
+    @Override
+    public void onTapRight() {
+        changeState();
+    }
+
+    @Override
+    public void onTapLeft() {
+        changeState();
     }
 }

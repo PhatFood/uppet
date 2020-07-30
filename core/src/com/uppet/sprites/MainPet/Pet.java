@@ -7,8 +7,14 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.uppet.Animation;
 import com.uppet.MainGame;
+import com.uppet.PlayerOverListener;
+import com.uppet.StandingListener;
+import com.uppet.TapListener;
+import com.uppet.sprites.Enemy.EnemyManager;
+import com.uppet.sprites.Ground;
+import com.uppet.states.PlayState;
 
-public class Pet {
+public class Pet implements TapListener, StandingListener, PlayerOverListener {
     private float gravity = 0;
     private Vector3 position;
     private Vector3 velocity;
@@ -40,6 +46,11 @@ public class Pet {
         bounds = new Rectangle(x,y, petAnimation.getWidthFrame(), petAnimation.getHeightFrame());
 
         balloon = new Balloon(x,y,petAnimation.getWidthFrame());
+
+        PlayState.addTapListener(this);
+        Ground.addStandingListener(this);
+        EnemyManager.addOverListener(this);
+        Balloon.addOverListener(this);
     }
 
     public void setPosition(float x, float y)
@@ -129,7 +140,7 @@ public class Pet {
     public void flyingLeft(){
         if(!isOver)
         {
-        balloon.changeState();
+            //balloon.changeState();
         velocity.y = 200;
         velocity.x = -150;
         gravity = 0;
@@ -138,10 +149,35 @@ public class Pet {
 
     public void flyingRight(){
         if(!isOver) {
-            balloon.changeState();
+            //balloon.changeState();
             velocity.y = 200;
             velocity.x = 150;
             gravity = 0;
         }
+    }
+
+    @Override
+    public void onTapRight() {
+        flyingRight();
+    }
+
+    @Override
+    public void onTapLeft() {
+        flyingLeft();
+    }
+
+    @Override
+    public void onStand(float y) {
+        position.y = y;
+        bounds.setPosition(position.x,position.y);
+        balloon.setPosition(y,petAnimation.getWidthFrame());
+
+        velocity.y = 0;
+        gravity = 0;
+    }
+
+    @Override
+    public void onOver() {
+        over();
     }
 }
