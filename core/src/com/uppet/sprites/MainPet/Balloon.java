@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.uppet.Animation;
-import com.uppet.PlayerOverListener;
-import com.uppet.TapListener;
+import com.uppet.listener.PlayerOverListener;
+import com.uppet.listener.TapListener;
 import com.uppet.states.PlayState;
 
 import java.util.ArrayList;

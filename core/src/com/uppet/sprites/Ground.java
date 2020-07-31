@@ -1,11 +1,12 @@
 package com.uppet.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
+import com.uppet.Animation;
 import com.uppet.MainGame;
-import com.uppet.StandingListener;
+import com.uppet.listener.SitingListener;
 
 import java.util.ArrayList;
 
@@ -15,28 +16,31 @@ public class Ground {
     private Vector2 position;
     private Texture texture;
     private Rectangle rectangle;
-    private static ArrayList<StandingListener> standingListeners = new ArrayList<>();
+    private static ArrayList<SitingListener> sitingListeners = new ArrayList<>();
+    private Animation groundAnimation;
 
     public Vector2 getPosition() {return position;}
-    public Texture getTexture() {return texture;}
+    public TextureRegion getTexture() {return groundAnimation.getFrame();}
 
     public Ground() {
-        texture = new Texture("ground1.png");
-        position = new Vector2(MainGame.WIDTH/2-(texture.getWidth()/2), -(texture.getHeight()-GROUND_HEIGHT));
+        texture = new Texture("groundani.png");
+        groundAnimation = new Animation(new TextureRegion(texture),4,0.7f);
+        position = new Vector2(MainGame.WIDTH/2-(groundAnimation.getWidthFrame()/2), -(groundAnimation.getHeightFrame()-GROUND_HEIGHT));
 
-        rectangle = new Rectangle(position.x,position.y,texture.getWidth(),texture.getHeight()-GRASS_HEIGHT);
+        rectangle = new Rectangle(position.x,position.y,groundAnimation.getWidthFrame(),groundAnimation.getHeightFrame()-GRASS_HEIGHT);
     }
 
-    public void update(Rectangle bounds)
+    public void update(float dt, Rectangle bounds)
     {
-        position.set(MainGame.WIDTH/2-(texture.getWidth()/2), position.y);
+        groundAnimation.update(dt);
+        position.set(MainGame.WIDTH/2-(groundAnimation.getWidthFrame()/2), position.y);
         rectangle.setPosition(position.x,position.y);
 
         if (bounds.overlaps(rectangle))
         {
-            for(StandingListener standingListener : standingListeners)
+            for(SitingListener sitingListener : sitingListeners)
             {
-                standingListener.onStand(getCurrentHeight());
+                sitingListener.onSit(getCurrentHeight());
             }
         }
     }
@@ -45,15 +49,11 @@ public class Ground {
         return texture.getHeight() + position.y - GRASS_HEIGHT;
     }
 
-    public boolean collides(Rectangle player){
-        return player.overlaps(rectangle);
-    }
 
 
-
-    public static void addStandingListener(StandingListener standingListener)
+    public static void addStandingListener(SitingListener sitingListener)
     {
-        standingListeners.add(standingListener);
+        sitingListeners.add(sitingListener);
     }
 
     /*public boolean isVisible() {

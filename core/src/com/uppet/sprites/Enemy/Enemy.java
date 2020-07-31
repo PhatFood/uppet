@@ -20,7 +20,7 @@ public class Enemy {
     private static Texture textureBirdFlyLeft;
     private static Animation birdAnimation;
     private static Animation birdAnimationFlyLeft;
-    private enum FlyWay{flyRight, flyLeft;}
+    public static enum FlyWay{flyRight, flyLeft;}
     private FlyWay flyWay;
     private float birdSpeed = 5;
     private Random rand;
@@ -36,6 +36,10 @@ public class Enemy {
             return birdAnimationFlyLeft.getFrame();
         else
             return birdAnimation.getFrame();
+    }
+
+    public FlyWay getFlyWay(){
+        return flyWay;
     }
 
     public Enemy(float y)

@@ -2,10 +2,8 @@ package com.uppet.sprites.Enemy;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Array;
-import com.uppet.PlayerOverListener;
-import com.uppet.sprites.Enemy.Enemy;
+import com.uppet.listener.BirdPeckListener;
+import com.uppet.listener.PlayerOverListener;
 import com.uppet.sprites.MainPet.Pet;
 
 import java.util.ArrayList;
@@ -17,6 +15,7 @@ public class EnemyManager {
 
     private ArrayList<Enemy> enemies;
     private static ArrayList<PlayerOverListener> playerOverListeners = new ArrayList<>();
+    private static ArrayList<BirdPeckListener> birdPeckListeners = new ArrayList<>();
 
     public EnemyManager()
     {
@@ -27,15 +26,28 @@ public class EnemyManager {
         }
     }
 
-    public void update(OrthographicCamera cam, Float dt, Rectangle player)
+    public void update(OrthographicCamera cam, Float dt, Pet pet)
     {
         for(Enemy enemy:enemies)
         {
-            if(enemy.collides(player))
+            if(enemy.collides(pet.getBalloonBounds()))
             {
                 for(PlayerOverListener playerOverListener : playerOverListeners)
                 {
                     playerOverListener.onOver();
+                }
+            }
+            else if(enemy.collides(pet.getBounds()))
+            {
+                for(BirdPeckListener birdPeckListener : birdPeckListeners)
+                {
+                    if (enemy.getFlyWay() == Enemy.FlyWay.flyLeft)
+                    {
+                        birdPeckListener.onPeckedLeft();
+                    }
+                    else {
+                        birdPeckListener.onPeckedRight();
+                    }
                 }
             }
             enemy.update(dt);
@@ -55,5 +67,10 @@ public class EnemyManager {
     public static void addOverListener(PlayerOverListener playerOverListener)
     {
         playerOverListeners.add(playerOverListener);
+    }
+
+    public static void addBirdPeckListener(BirdPeckListener birdPeckListener)
+    {
+        birdPeckListeners.add(birdPeckListener);
     }
 }

@@ -1,49 +1,49 @@
 package com.uppet.sprites.Cloud;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.uppet.MainGame;
 
 import java.util.Random;
 
 public class Cloud {
     public static final int CLOUD_HEIGHT = 300;
 
-    private static final int FLUCTUATION = 150;
-    private static final int CLOUD_GAP = 150;
-    private static final int LOWEST_RIGHT = 50;
-    private Texture leftCloud, rightCloud;
-    private Vector2 posLeft, posRight;
+    private Texture Cloud;
+    private Vector2 pos;
     private Random rand;
+    private Rectangle rectangle;
 
     public Cloud(float y)
     {
-        leftCloud = new Texture("cloud.png");
-        rightCloud = new Texture("cloud.png");
+        Cloud = new Texture("cloud.png");
         rand = new Random();
 
-        posRight = new Vector2(rand.nextInt(FLUCTUATION) + CLOUD_GAP + LOWEST_RIGHT + rand.nextInt(25),y+400);
-        posLeft = new Vector2(posRight.x - CLOUD_GAP - leftCloud.getWidth() - rand.nextInt(25) , y+400);
+        pos = new Vector2(rand.nextInt(MainGame.WIDTH-Cloud.getWidth()),y+400);
+        rectangle = new Rectangle(pos.x,pos.y + Cloud.getHeight()-10,Cloud.getWidth(),5);
     }
 
-    public Texture getLeftCloud() {
-        return leftCloud;
+    public float getHeightStand(){
+        return rectangle.getHeight()+rectangle.y;
     }
 
-    public Texture getRightCloud() {
-        return rightCloud;
+    public Texture getCloud() {
+        return Cloud;
     }
 
-    public Vector2 getPosLeft() {
-        return posLeft;
+    public Vector2 getPos() {
+        return pos;
     }
 
-    public Vector2 getPosRight() {
-        return posRight;
-    }
 
     public void reposition(float y){
-     posRight.set(rand.nextInt(FLUCTUATION) + CLOUD_GAP + LOWEST_RIGHT,y);
-     posLeft.set(posRight.x - CLOUD_GAP - leftCloud.getWidth(), y);
+     pos.set(rand.nextInt(MainGame.WIDTH-Cloud.getWidth()) ,y);
+     rectangle.setPosition(pos.x,pos.y+Cloud.getHeight()-10);
+    }
+
+    public boolean collides(Rectangle player){
+        return player.overlaps(rectangle);
     }
 }
