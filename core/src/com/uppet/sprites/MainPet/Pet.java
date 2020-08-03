@@ -1,6 +1,7 @@
 package com.uppet.sprites.MainPet;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -18,6 +19,8 @@ import com.uppet.states.PlayState;
 
 public class Pet implements TapListener, SitingListener, PlayerOverListener, BirdPeckListener {
     private float gravity = 0;
+    private float angle = 0;
+    private float angleRotated = 0;
     private Vector3 position;
     private Vector3 velocity;
     private Rectangle bounds;
@@ -30,6 +33,7 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
     private boolean isOver;
     private enum PetState {flying,siting};
     private PetState currentState;
+    private Sprite petSprite;
 
 
     public Vector3 getPosition() {
@@ -42,7 +46,7 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
         else return animationSiting.getFrame();
     }
 
-    public Pet(int x, int y){
+    public Pet(float x, float y){
         currentState = PetState.siting;
         position = new Vector3(x,y,0);
         velocity = new Vector3(0,0,0);
@@ -58,6 +62,8 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
         footBounds = new Rectangle(x+ animationFlying.getWidthFrame()/4,y, animationFlying.getWidthFrame()/2, 1);
 
         balloon = new Balloon(x,y, animationFlying.getWidthFrame());
+
+        petSprite = new Sprite(getPetTexture());
 
         PlayState.addTapListener(this);
         Ground.addStandingListener(this);
@@ -86,7 +92,17 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
     {
         if(balloon.getTexture()!=null)
             sb.draw(balloon.getTexture(),balloon.getPos().x,balloon.getPos().y);
-        sb.draw(getPetTexture(),position.x,position.y);
+        //sb.draw(getPetTexture(),position.x,position.y);
+
+
+
+        petSprite.setRegion(getPetTexture());
+        petSprite.setPosition(position.x,position.y);
+        petSprite.draw(sb);
+
+        /*s.setRegion(getPetTexture());
+        s.rotate(45f);
+        s.draw(sb);*/
     }
 
     public void over()
@@ -102,6 +118,7 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
         gravity -= 0.1;
         velocity.scl(dt);
         position.add(velocity.x,velocity.y,velocity.z);
+
         if(position.x < 0)
         {
             position.x = 0;
@@ -112,13 +129,22 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
         }
 
 
-        if(velocity.x < 0)
+
+        /*if(velocity.x < 0)
         {
             velocity.add(0.01f,0,0);
         }
         else if(velocity.x > 0)
         {
             velocity.add(-0.01f,0,0);
+        }*/
+
+        if(angle != 0)
+        {
+            rotate();
+        }
+        else {
+            stableRotate();
         }
 
         if (position.x == (0) || position.x == (MainGame.WIDTH- animationFlying.getWidthFrame()))
@@ -163,19 +189,55 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
 
     public void flyingLeft(){
         if(!isOver)
-        { currentState = PetState.flying;
-        velocity.y = 200;
-        velocity.x = -150;
-        gravity = 0;
+        {
+            //angle = 30;
+            currentState = PetState.flying;
+            velocity.y = 200;
+            velocity.x = -150f;
+            gravity = 0;
         }
     }
 
     public void flyingRight(){
         if(!isOver) {
+            //angle  = -30;
             currentState = PetState.flying;
             velocity.y = 200;
-            velocity.x = 150;
+            velocity.x = 150f;
             gravity = 0;
+        }
+    }
+
+
+
+    private void stableRotate() {
+        if(angleRotated > 0)
+        {
+            angleRotated -= 2;
+            petSprite.rotate(-2);
+        }
+        else if(angleRotated < 0)
+        {
+            angleRotated += 2;
+            petSprite.rotate(2);
+        }
+    }
+
+    public void rotate(){
+        if (angle != 0)
+        {
+            if (angle > 0)
+            {
+                angle -=2;
+                petSprite.rotate(2);
+                angleRotated += 2;
+            }
+            else if (angle < 0)
+            {
+                angle +=2;
+                petSprite.rotate(-2);
+                angleRotated -= 2;
+            }
         }
     }
 

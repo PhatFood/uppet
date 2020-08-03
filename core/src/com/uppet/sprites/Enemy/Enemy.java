@@ -49,9 +49,9 @@ public class Enemy {
         if(textureBirdFlyLeft == null)
             textureBirdFlyLeft = new Texture("birdrev.png");
         if(birdAnimation == null)
-            birdAnimation = new Animation(new TextureRegion(textureBird),3,0.7f);
+            birdAnimation = new Animation(new TextureRegion(textureBird),4,0.6f);
         if(birdAnimationFlyLeft == null)
-            birdAnimationFlyLeft = new Animation(new TextureRegion(textureBirdFlyLeft),3,0.7f);
+            birdAnimationFlyLeft = new Animation(new TextureRegion(textureBirdFlyLeft),4,0.6f);
 
         rand = new Random();
         position = new Vector3(rand.nextInt(MainGame.WIDTH),y+600,0);

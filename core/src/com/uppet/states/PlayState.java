@@ -10,10 +10,13 @@ import com.uppet.sprites.Controller;
 import com.uppet.sprites.Enemy.EnemyManager;
 import com.uppet.sprites.Ground;
 import com.uppet.sprites.MainPet.Pet;
+import com.uppet.sprites.ScoreHub;
 
 import java.util.ArrayList;
 
 public class PlayState extends State  {
+    private boolean isGameStarted = false;
+
     private Pet pet;
     private Texture bg;
     private Ground ground;
@@ -21,6 +24,8 @@ public class PlayState extends State  {
 
     private EnemyManager enemyManager;
     private CloudManager cloudManager;
+
+    private ScoreHub scoreHub;
 
     private static ArrayList<TapListener> tapListeners = new ArrayList<>();
     private static ArrayList<SitingListener> sitingListeners = new ArrayList<>();
@@ -33,35 +38,32 @@ public class PlayState extends State  {
         pet = new Pet(Ground.GROUND_HEIGHT,0);
         pet.setPosition(MainGame.WIDTH/2-(pet.getPetTexture().getRegionWidth()/2),(int)ground.getCurrentHeight());
         controller = new Controller(MainGame.batch);
-
         cloudManager = new CloudManager();
-
         enemyManager = new EnemyManager();
+        scoreHub = new ScoreHub();
+
     }
 
     @Override
     protected void handleInput() {
         if (controller.isRightPressed())
         {
+            isGameStarted = true;
             for(TapListener tapListener : tapListeners)
             {
                 tapListener.onTapRight();
             }
-                //pet.flyingRight();
         }
         else if(controller.isLeftPressed())
         {
+            isGameStarted = true;
             for(TapListener tapListener : tapListeners)
             {
                 tapListener.onTapLeft();
             }
-                //pet.flyingLeft();
         }
 
-        /*if(controller.isRightReleased())
-            pet.flyingRight();
-        if(controller.isLeftReleased())
-            pet.flyingLeft();*/
+
     }
 
     @Override
@@ -77,8 +79,12 @@ public class PlayState extends State  {
 
         enemyManager.update(cam,dt,pet);
 
-        cam.position.y += 1.5;
-        cam.update();
+        scoreHub.update(dt,cam);
+
+        if (isGameStarted) {
+            cam.position.y += 1.5;
+            cam.update();
+        }
     }
 
     @Override
@@ -94,6 +100,8 @@ public class PlayState extends State  {
         cloudManager.render(sb);
 
         enemyManager.render(sb);
+
+        scoreHub.render(sb);
 
         sb.end();
 
