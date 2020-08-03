@@ -79,9 +79,9 @@ public class PlayState extends State  {
 
         enemyManager.update(cam,dt,pet);
 
-        scoreHub.update(dt,cam);
 
         if (isGameStarted) {
+            scoreHub.update(dt,cam);
             cam.position.y += 1.5;
             cam.update();
         }

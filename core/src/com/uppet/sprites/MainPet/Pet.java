@@ -128,8 +128,6 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
             position.x = MainGame.WIDTH- animationFlying.getWidthFrame();
         }
 
-
-
         /*if(velocity.x < 0)
         {
             velocity.add(0.01f,0,0);

@@ -39,7 +39,7 @@ public class Balloon implements TapListener {
 
     public Balloon(float x, float y, float petWidth)
     {
-        reviveTime = 0.5f;
+        reviveTime = 0.3f;
         balloonCurrentTime = 0;
 
         balloonTexture = new Texture("balloonani.png");
