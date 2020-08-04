@@ -55,6 +55,7 @@ public class ScoreHub implements BirdPeckListener, PlayerOverListener {
                     isReadyToUnDisableLostScore = true;
                 }
                 if (isReadyToUnDisableLostScore) {
+                    justLostScore = false;
                     isDisabledLostScore = false;
                     isReadyToUnDisableLostScore = false;
                 }
@@ -74,7 +75,6 @@ public class ScoreHub implements BirdPeckListener, PlayerOverListener {
                 sb.draw(scorePenAnimation.getFrameAt(hundred), position.x, position.y);
                 sb.draw(scorePenAnimation.getFrameAt(tens), scoreAnimation.getWidthFrame() + position.x, position.y);
                 sb.draw(scorePenAnimation.getFrameAt(unit), scoreAnimation.getWidthFrame() * 2 + position.x, position.y);
-                justLostScore = false;
             } else {
                 sb.draw(scoreAnimation.getFrameAt(hundred), position.x, position.y);
                 sb.draw(scoreAnimation.getFrameAt(tens), scoreAnimation.getWidthFrame() + position.x, position.y);
