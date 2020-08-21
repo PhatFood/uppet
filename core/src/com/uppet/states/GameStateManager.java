@@ -18,6 +18,7 @@ public class GameStateManager {
 
     public void pop (){
         states.pop();
+        states.peek().onContinue();
     }
 
     public void set(State state)

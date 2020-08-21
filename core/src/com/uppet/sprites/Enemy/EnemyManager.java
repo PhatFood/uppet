@@ -22,7 +22,8 @@ public class EnemyManager {
         enemies = new ArrayList<Enemy>();
         for(int i = 1; i<=ENEMY_COUNT;i++)
         {
-            enemies.add(new Enemy(i*(ENEMY_SPACING+Enemy.ENEMY_HEIGHT)));
+            Enemy enemy = new Enemy(i*(ENEMY_SPACING+Enemy.ENEMY_HEIGHT));
+            enemies.add(enemy);
         }
     }
 

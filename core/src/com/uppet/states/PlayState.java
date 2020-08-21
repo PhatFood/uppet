@@ -2,19 +2,24 @@ package com.uppet.states;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.uppet.GameInfo;
 import com.uppet.MainGame;
+import com.uppet.listener.PlayerOverListener;
 import com.uppet.listener.SitingListener;
+import com.uppet.listener.StartGameListener;
 import com.uppet.listener.TapListener;
 import com.uppet.sprites.Cloud.CloudManager;
 import com.uppet.sprites.Controller;
 import com.uppet.sprites.Enemy.EnemyManager;
 import com.uppet.sprites.Ground;
+import com.uppet.sprites.MainPet.Balloon;
 import com.uppet.sprites.MainPet.Pet;
 import com.uppet.sprites.ScoreHub;
+import com.uppet.sprites.StartHub;
 
 import java.util.ArrayList;
 
-public class PlayState extends State  {
+public class PlayState extends State implements PlayerOverListener {
     private boolean isGameStarted = false;
 
     private Pet pet;
@@ -26,9 +31,11 @@ public class PlayState extends State  {
     private CloudManager cloudManager;
 
     private ScoreHub scoreHub;
+    private StartHub startHub;
 
     private static ArrayList<TapListener> tapListeners = new ArrayList<>();
     private static ArrayList<SitingListener> sitingListeners = new ArrayList<>();
+    private static ArrayList<StartGameListener> startGameListeners = new ArrayList<>();
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -41,7 +48,9 @@ public class PlayState extends State  {
         cloudManager = new CloudManager();
         enemyManager = new EnemyManager();
         scoreHub = new ScoreHub();
+        startHub = new StartHub();
 
+        Balloon.addOverListener(this);
     }
 
     @Override
@@ -53,6 +62,7 @@ public class PlayState extends State  {
             {
                 tapListener.onTapRight();
             }
+            noticeStart();
         }
         else if(controller.isLeftPressed())
         {
@@ -61,6 +71,7 @@ public class PlayState extends State  {
             {
                 tapListener.onTapLeft();
             }
+            noticeStart();
         }
 
 
@@ -79,9 +90,11 @@ public class PlayState extends State  {
 
         enemyManager.update(cam,dt,pet);
 
+        startHub.update();
+
+        scoreHub.update(dt,cam);
 
         if (isGameStarted) {
-            scoreHub.update(dt,cam);
             cam.position.y += 1.5;
             cam.update();
         }
@@ -103,6 +116,8 @@ public class PlayState extends State  {
 
         scoreHub.render(sb);
 
+        startHub.render(sb);
+
         sb.end();
 
         controller.draw();
@@ -113,7 +128,29 @@ public class PlayState extends State  {
 
     }
 
+    @Override
+    public void onContinue() {
+
+    }
+
     public static void addTapListener(TapListener tapListener){
         tapListeners.add(tapListener);
+    }
+
+    public static void addStartListener(StartGameListener startGameListener)
+    {
+        startGameListeners.add(startGameListener);
+    }
+
+    public void noticeStart()
+    {
+            for (StartGameListener startGameListener : startGameListeners) {
+                startGameListener.isStart();
+            }
+    }
+
+    @Override
+    public void onOver() {
+        gsm.set(new LoseState(gsm));
     }
 }
