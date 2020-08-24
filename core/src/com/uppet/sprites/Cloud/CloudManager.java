@@ -4,12 +4,14 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.uppet.listener.SitingListener;
+import com.uppet.sprites.Sprite;
+import com.uppet.sprites.Visitor;
 
 import java.util.ArrayList;
 
-public class CloudManager {
-    private static final int CLOUD_SPACING = 300;
-    private static int CLOUD_COUNT = 3;
+public class CloudManager implements Sprite {
+    private  final int CLOUD_SPACING = 300;
+    private int CLOUD_COUNT = 3;
 
     private ArrayList<Cloud> clouds;
     private static ArrayList<SitingListener> sitingListeners = new ArrayList<>();
@@ -50,5 +52,10 @@ public class CloudManager {
     public static void addStandingListener(SitingListener sitingListener)
     {
         sitingListeners.add(sitingListener);
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }

@@ -1,4 +1,4 @@
-#Sat Jul 11 11:31:59 ICT 2020
-base.0=E\:\\Code\\Nam3_2019\\Ky2\\ThietKePM\\ProjectGame\\android\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Mon Aug 24 21:04:37 ICT 2020
+base.0=E\:\\Code\\Nam3_2019\\Ky2\\ThietKePM\\Uppet2\\ProjectGame\\android\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

@@ -1,0 +1,1 @@
+{"GameInfo":{"AudioSetting":"on","Difficult":1,"High score":5,"Name":""}}

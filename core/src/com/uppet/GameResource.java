@@ -12,7 +12,7 @@ public class GameResource {
 
     private GameResource(){
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
-        backGround = new Texture("bg.png");
+        backGround = new Texture("menubgr.png");
     }
 
     public static GameResource getInstance(){

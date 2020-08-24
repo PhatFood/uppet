@@ -46,6 +46,7 @@ public class GameLevelState extends State {
         table.row();
         table.add(backButton);
 
+
         stage.addActor(table);
         Gdx.input.setInputProcessor(stage);
         handleInput();

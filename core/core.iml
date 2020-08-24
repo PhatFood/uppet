@@ -32,5 +32,8 @@
     <orderEntry type="library" exported="" name="Gradle: gdx-box2d-1.9.10" level="project" />
     <orderEntry type="library" exported="" name="Gradle: gdx-freetype-1.9.10" level="project" />
     <orderEntry type="library" exported="" name="Gradle: gdx-1.9.10" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: json-simple-1.1.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: junit-4.10" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: hamcrest-core-1.1" level="project" />
   </component>
 </module>

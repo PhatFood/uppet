@@ -5,13 +5,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.uppet.listener.BirdPeckListener;
 import com.uppet.listener.PlayerOverListener;
 import com.uppet.sprites.MainPet.Pet;
+import com.uppet.sprites.Sprite;
+import com.uppet.sprites.Visitor;
 
 import java.util.ArrayList;
 
-public class EnemyManager {
+public class EnemyManager implements Sprite {
 
-    private static final int ENEMY_SPACING = 300;
-    private static final int ENEMY_COUNT = 3;
+    private  final int ENEMY_SPACING = 300;
+    private  final int ENEMY_COUNT = 3;
 
     private ArrayList<Enemy> enemies;
     private static ArrayList<PlayerOverListener> playerOverListeners = new ArrayList<>();
@@ -73,5 +75,10 @@ public class EnemyManager {
     public static void addBirdPeckListener(BirdPeckListener birdPeckListener)
     {
         birdPeckListeners.add(birdPeckListener);
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }

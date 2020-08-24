@@ -1,5 +1,8 @@
 package com.uppet.sprites.MainPet;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.uppet.Animation;
+import com.uppet.GameInfo;
 import com.uppet.listener.BirdPeckListener;
 import com.uppet.MainGame;
 import com.uppet.listener.PlayerOverListener;
@@ -15,9 +19,10 @@ import com.uppet.listener.TapListener;
 import com.uppet.sprites.Cloud.CloudManager;
 import com.uppet.sprites.Enemy.EnemyManager;
 import com.uppet.sprites.Ground;
+import com.uppet.sprites.Visitor;
 import com.uppet.states.PlayState;
 
-public class Pet implements TapListener, SitingListener, PlayerOverListener, BirdPeckListener {
+public class Pet implements TapListener, SitingListener, PlayerOverListener, BirdPeckListener, com.uppet.sprites.Sprite {
     private float gravity = 0;
     private float angle = 0;
     private float angleRotated = 0;
@@ -31,9 +36,13 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
     private Animation animationFlying;
     private Animation animationSiting;
     private boolean isOver;
+
     private enum PetState {flying,siting};
     private PetState currentState;
     private Sprite petSprite;
+
+    private Sound hop, stab;
+    private GameInfo gameInfo;
 
 
     public Vector3 getPosition() {
@@ -64,6 +73,11 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
         balloon = new Balloon(x,y, animationFlying.getWidthFrame());
 
         petSprite = new Sprite(getPetTexture());
+
+        hop = Gdx.audio.newSound(Gdx.files.internal("audio/jump.wav"));
+        stab = Gdx.audio.newSound(Gdx.files.internal("audio/stab.wav"));
+
+        gameInfo = GameInfo.getInstance();
 
         PlayState.addTapListener(this);
         Ground.addStandingListener(this);
@@ -111,7 +125,7 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
         balloon.over();
     }
 
-    public void update(float dt){
+    public void update(float dt, OrthographicCamera cam){
         animationFlying.update(dt);
         animationSiting.update(dt);
         velocity.add(0,gravity,0);
@@ -126,6 +140,16 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
         if(position.x > MainGame.WIDTH- animationFlying.getWidthFrame())
         {
             position.x = MainGame.WIDTH- animationFlying.getWidthFrame();
+        }
+
+        if(position.y > cam.position.y + animationFlying.getHeightFrame()+(float)MainGame.HEIGHT/2)
+        {
+            over();
+        }
+
+        if(position.y + animationFlying.getHeightFrame() < cam.position.y -(float)MainGame.HEIGHT/2)
+        {
+            over();
         }
 
         /*if(velocity.x < 0)
@@ -161,6 +185,10 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
 
     private void bouncing()
     {
+        if(gameInfo.isMusicOn())
+        {
+            hop.play();
+        }
         if (position.x == (0))
         {
             velocity.x = 2.5f;
@@ -188,6 +216,10 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
     public void flyingLeft(){
         if(!isOver)
         {
+            if(gameInfo.isMusicOn())
+            {
+                hop.play();
+            }
             //angle = 30;
             currentState = PetState.flying;
             velocity.y = 200;
@@ -198,6 +230,10 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
 
     public void flyingRight(){
         if(!isOver) {
+            if(gameInfo.isMusicOn())
+            {
+                hop.play();
+            }
             //angle  = -30;
             currentState = PetState.flying;
             velocity.y = 200;
@@ -267,6 +303,10 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
 
     @Override
     public void onPeckedRight() {
+        if(gameInfo.isMusicOn())
+        {
+            stab.play();
+        }
         currentState = PetState.flying;
         velocity.y = 250;
         velocity.x = 150;
@@ -274,8 +314,17 @@ public class Pet implements TapListener, SitingListener, PlayerOverListener, Bir
 
     @Override
     public void onPeckedLeft() {
+        if(gameInfo.isMusicOn())
+        {
+            stab.play();
+        }
         currentState = PetState.flying;
         velocity.y = 200;
         velocity.x = -150;
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }

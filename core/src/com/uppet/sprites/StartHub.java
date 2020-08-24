@@ -7,7 +7,7 @@ import com.uppet.listener.StartGameListener;
 import com.uppet.sprites.Enemy.Enemy;
 import com.uppet.states.PlayState;
 
-public class StartHub implements StartGameListener {
+public class StartHub implements StartGameListener, Sprite {
     private Texture tabToStartTexture, handTexture;
     private Vector2 posHand;
     private final float HAND_GAP = 150;
@@ -52,5 +52,10 @@ public class StartHub implements StartGameListener {
         {
             isStart = true;
         }
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }

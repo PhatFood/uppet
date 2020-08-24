@@ -10,7 +10,7 @@ import com.uppet.listener.SitingListener;
 
 import java.util.ArrayList;
 
-public class Ground {
+public class Ground implements Sprite {
     public static final int GROUND_HEIGHT = 450;
     private static final int GRASS_HEIGHT = 370;
     private Vector2 position;
@@ -54,6 +54,11 @@ public class Ground {
     public static void addStandingListener(SitingListener sitingListener)
     {
         sitingListeners.add(sitingListener);
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 
     /*public boolean isVisible() {

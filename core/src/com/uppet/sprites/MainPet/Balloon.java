@@ -1,15 +1,20 @@
 package com.uppet.sprites.MainPet;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.uppet.Animation;
+import com.uppet.GameInfo;
 import com.uppet.listener.PlayerOverListener;
 import com.uppet.listener.TapListener;
 import com.uppet.states.PlayState;
 
 import java.util.ArrayList;
+
+import javax.sound.midi.Soundbank;
 
 public class Balloon implements TapListener {
     private Texture balloonTexture, balloonTexturePop;
@@ -22,6 +27,8 @@ public class Balloon implements TapListener {
     private float balloonCurrentTime;
     private Animation balloonAnimation, balloonAnimationPop;
     private static ArrayList<PlayerOverListener> playerOverListeners = new ArrayList<>();
+    private Sound pop;
+    private GameInfo gameInfo;
 
 
 
@@ -30,7 +37,13 @@ public class Balloon implements TapListener {
     }
 
     public void over() {
-        balloonState = BalloonStates.pop;
+        if(balloonState!= BalloonStates.pop) {
+            if(gameInfo.isMusicOn())
+            {
+                pop.play();
+            }
+            balloonState = BalloonStates.pop;
+        }
     }
 
     public boolean isOver(){
@@ -52,6 +65,9 @@ public class Balloon implements TapListener {
         balloonPos = new Vector3(x-(balloonAnimation.getWidthFrame()/2-petWidth/2),y+55,0);
         balloonBounds = new Rectangle(balloonPos.x, balloonPos.y, balloonAnimation.getWidthFrame(), balloonAnimation.getHeightFrame());
         balloonState = BalloonStates.green;
+
+        pop = Gdx.audio.newSound(Gdx.files.internal("audio/pop.wav"));
+        gameInfo = GameInfo.getInstance();
 
         PlayState.addTapListener(this);
     }

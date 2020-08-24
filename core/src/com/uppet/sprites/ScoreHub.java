@@ -16,7 +16,7 @@ import com.uppet.sprites.Enemy.EnemyManager;
 import com.uppet.sprites.MainPet.Balloon;
 import com.uppet.states.PlayState;
 
-public class ScoreHub implements BirdPeckListener, PlayerOverListener, StartGameListener {
+public class ScoreHub implements BirdPeckListener, PlayerOverListener, StartGameListener,Sprite {
     private Texture scoreTexture, scorePenTexture;
     private Animation scoreAnimation, scorePenAnimation;
     private int score;
@@ -31,7 +31,8 @@ public class ScoreHub implements BirdPeckListener, PlayerOverListener, StartGame
     private float timeLevel = 0;
     private int scoreLostLevel = 0;
 
-    public ScoreHub() {
+    public ScoreHub()  {
+        gameInfo = GameInfo.getInstance();
         position = new Vector2(0, 0);
         gameInfo = GameInfo.getInstance();
         setLevel();
@@ -132,11 +133,17 @@ public class ScoreHub implements BirdPeckListener, PlayerOverListener, StartGame
 
     @Override
     public void onOver() {
+        gameInfo.setCurrentScore(score);
         isGameOver = true;
     }
 
     @Override
     public void isStart() {
         isStart = true;
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }
